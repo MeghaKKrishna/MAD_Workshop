@@ -1,0 +1,52 @@
+//<?xml version="1.0" encoding="utf-8"?>
+//        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+//        xmlns:app="http://schemas.android.com/apk/res-auto"
+//        xmlns:tools="http://schemas.android.com/tools"
+//        android:layout_width="match_parent"
+//        android:layout_height="match_parent"
+//        tools:context=".MainActivity">
+//
+//        <TextView
+//        android:layout_width="wrap_content"
+//        android:layout_height="wrap_content"
+//        android:text="Hello World!"
+//        app:layout_constraintBottom_toBottomOf="parent"
+//        app:layout_constraintLeft_toLeftOf="parent"
+//        app:layout_constraintRight_toRightOf="parent"
+//        app:layout_constraintTop_toTopOf="parent" />
+//        <VideoView
+//        android:layout_width="match_parent"
+//        android:layout_height="wrap_content"
+//        android:id="@+id/v"/>
+//
+//        </RelativeLayout>
+
+
+package com.example.videoplayer;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.net.Uri;
+import android.os.Bundle;
+import android.widget.MediaController;
+import android.widget.VideoView;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        VideoView videoView=(VideoView)findViewById(R.id.v);//To get id from xml
+
+        MediaController mediaController=new MediaController(this);//object Creation
+        mediaController.setAnchorView(videoView);//For Play pause forward buttons
+
+        Uri uri=Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.video);//To get the video from res.raw
+        videoView.setMediaController(mediaController);//setting mediacontroller
+        videoView.setVideoURI(uri);//videopath given
+        videoView.requestFocus();
+        videoView.start();
+    }
+}
