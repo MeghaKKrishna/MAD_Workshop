@@ -1,0 +1,27 @@
+public class MainActivity extends AppCompatActivity {
+    //initialise button
+    Button b1;
+    EditText e;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        e=(EditText)findViewById(R.id.e1) ;
+        b1=(Button)findViewById(R.id.button);
+        //perform toast operation
+//        b1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url=e.getText().toString();
+                Intent i=new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                startActivity(i);
+            }
+        });
+    }
+}
